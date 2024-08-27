@@ -1,4 +1,7 @@
+import React from "react";
 
-const heading = React.createElement("div",{},'react i am here ')
-const root =ReactDOM.createRoot(document.getElementById('root'))
-root.render(heading)
+import ReactDOM from "react-dom/client"; 
+
+const heading = React.createElement("div", {}, 'React, I am here');
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(heading);
