@@ -2,9 +2,9 @@ import React from "react";
 
 import ReactDOM from "react-dom/client"; 
 
-//  const heading = React.createElement("div", {}, 'React, I am here');
 
+const d =<h1>i am from React</h1>;  //jsx to react element -> react object
 
- const jsx=<h1>hai</h1>; //jsx syntax
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(jsx);
+const root =ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(d);
