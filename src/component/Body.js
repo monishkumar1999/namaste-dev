@@ -21,6 +21,12 @@ const Body = () => {
     );
   };
 
+  if(reslists.length==0){
+    return <div className="spinner-border text-info" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+  }
+  
   return (
     <div className="body">
       <div className="search p-3 filter" style={{ color: "red" }}>
