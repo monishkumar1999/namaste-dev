@@ -5,3 +5,47 @@
 .card:hover{
     cursor: pointer;
 }
+
+/* Container for shimmer cards */
+.shimmerHeader {
+    display: flex;
+    gap: 16px; /* Space between the cards */
+  }
+  
+  /* Shimmer card styling */
+  .shimmer-card {
+   
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    position: relative;
+    background-color: #f0f0f0; /* Light grey background */
+    overflow: hidden;
+  }
+  
+  /* Shimmer effect */
+  .shimmer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.1) 40%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

@@ -1,6 +1,6 @@
 import RestaurantComponent from "./RestaruantComponet";
 import { useEffect, useState } from "react";
-
+import Shimmer from "./shimmer";
 import reslist from "../utill/mockdata";
 
 const Body = () => {
@@ -21,13 +21,9 @@ const Body = () => {
     );
   };
 
-  if(reslists.length==0){
-    return <div className="spinner-border text-info" role="status">
-    <span className="visually-hidden">Loading...</span>
-  </div>
-  }
-  
-  return (
+  return reslists.length == 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="search p-3 filter" style={{ color: "red" }}>
         search
@@ -45,8 +41,6 @@ const Body = () => {
       </div>
       <div className="container">
         <div className="row">
-          {" "}
-          {/* Bootstrap row for proper grid layout */}
           {reslists.map((restaurant) => (
             <RestaurantComponent key={restaurant.info.id} info={restaurant} />
           ))}
