@@ -20,7 +20,7 @@ return(
           <li className="m-2">Home</li>
           <li className="m-2">About</li>
           <li className="m-2">Cart</li>
-          <li className="m-2">Contact Us</li>
+          <li className="m-2">Contact s</li>
 
           <button className="btn btn-primary" onClick={()=>{
             btnchange("logout")
