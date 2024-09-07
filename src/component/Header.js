@@ -23,7 +23,8 @@ return(
           <li className="m-2">Contact us</li>
 
           <button className="btn btn-primary" onClick={()=>{
-            btnchange("logout")
+          btnName=="login"? btnchange("logout") :btnchange("login")
+          
           }}
           >{btnName}</button>
         </ul>
