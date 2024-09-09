@@ -49,3 +49,18 @@
     }
   }
   
+
+  .search-box {
+    max-width: 400px;
+  }
+  
+  .search-box .form-control {
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+  }
+  
+  .search-box .btn {
+    border-radius: 0 20px 20px 0;
+    padding: 10px 20px;
+  }
+  
