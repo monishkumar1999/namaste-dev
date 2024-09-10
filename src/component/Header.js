@@ -1,6 +1,8 @@
 import { LOGO_URL } from "../utill/constant.js";
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 export const Header = () => {
   const [btnName, btnchange] = useState("login");
   return (
@@ -11,10 +13,12 @@ export const Header = () => {
 
       <div className="nav_item col-sm-6">
         <ul className="d-flex justify-content-end list-unstyled p-4 h5">
-          <li className="m-2">Home</li>
-          <li className="m-2">About</li>
+          <li className="m-2"><Link to={"/"}>Home</Link> </li>
+          <li className="m-2"><Link to={"/about"}>About</Link> </li>
           <li className="m-2">Cart</li>
-          <li className="m-2">Contact us</li>
+          <li className="m-2">
+            <Link to={"/contact"}> Contact us</Link>
+          </li>
 
           <button
             className="btn btn-primary"
