@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 
 const RestaruntMenu = () => {
-  const [restinfo, setResinfo] = useState([]);
+  const [restinfo, setResinfo] = useState(null);
 
   useEffect(() => {
     fetchdata();
@@ -17,7 +17,6 @@ const RestaruntMenu = () => {
       const resmenu = await restmenudata.json();
       const info = resmenu;
       setResinfo(resmenu);
-     
 
       // console.log(resmenu.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards) // menu card
     } catch (error) {
@@ -25,13 +24,20 @@ const RestaruntMenu = () => {
     }
   };
 
-  // Destructure properties from restinfo object
-  const { name, costForTwoMessage, avgRatingString } = restinfo.data.cards[2].card.card.info;
+  if (restinfo == null) {
+    return <Shimmer />;
+  }
 
-  // console.log(restinfo);
-  return restinfo == null ? (
-    <Shimmer />
-  ) : (
+  console.log(restinfo);
+  // Destructure properties from restinfo object
+  const { name, costForTwoMessage, avgRatingString } =
+    restinfo.data.cards[2].card.card.info;
+
+ const restview= restinfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
+    .itemCards;
+
+    
+  return (
     <div className="container mt-4">
       <div className="card">
         <div className="card-body">
