@@ -7,6 +7,7 @@ import About from "./component/About";
 import Contact from "./component/Contact";
 import Error from "./component/Error";
 import RestaruntMenu from "./component/RestaruntMenu";
+import Current from "./component/Current";
 const AppComponent = () => (
   <div className="app">
     <Header />
@@ -33,7 +34,8 @@ const appRoute = createBrowserRouter([
       },
       {
         path:"/resmenu/:resid",
-        element:<RestaruntMenu />
+        element:<RestaruntMenu />,
+        errorElement:<Current /> 
       }
     ],
     errorElement: <Error />,

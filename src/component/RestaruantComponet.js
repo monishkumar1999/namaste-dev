@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utill/constant.js";
-
+import { Link } from "react-router-dom";
 const RestaurantComponent = ({ info }) => {
   const { name, cloudinaryImageId, costForTwo, avgRating } = info.info;
 
