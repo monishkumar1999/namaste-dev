@@ -2,10 +2,11 @@ import RestaurantComponent from "./RestaruantComponet";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
+import useOnlinestatus from "../utill/useOnlinestatus";
 const Body = () => {
   const [reslists, setListofRes] = useState([]);
 
-  const [filtredreslist,setfiltredres]=useState([])
+  const [filtredreslist, setfiltredres] = useState([]);
 
   const [searchtext, updatesearch] = useState("");
 
@@ -14,27 +15,28 @@ const Body = () => {
   }, []);
 
   const fetchdata = async () => {
-    try{
+    try {
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       ); // fetch will return promise
-  
+
       const rest_json = await data.json(); //.json will return promise we use handle using await
-    setListofRes(
-      rest_json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
+      setListofRes(
+        rest_json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      );
 
-    setfiltredres(
-      rest_json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
-    }
-   catch{
-
-   }
-
-
-    
+      setfiltredres(
+        rest_json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      );
+    } catch {}
   };
+
+  const onlineStats = useOnlinestatus();
+
+  if (onlineStats === false) {
+    console.log("you re online");
+    return <h1>Your are offline</h1>;
+  }
 
   return reslists.length == 0 ? (
     <Shimmer />
@@ -88,7 +90,9 @@ const Body = () => {
       <div className="container">
         <div className="row">
           {filtredreslist.map((restaurant) => (
-          <Link to={"/resmenu/"+restaurant.info.id}><RestaurantComponent key={restaurant.info.id} info={restaurant} /></Link>  
+            <Link to={"/resmenu/" + restaurant.info.id}>
+              <RestaurantComponent key={restaurant.info.id} info={restaurant} />
+            </Link>
           ))}
         </div>
       </div>
