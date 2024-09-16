@@ -51,12 +51,13 @@ const Body = () => {
               placeholder="Type to search..."
               value={searchtext}
               onChange={(typedData) => {
+                
                 updatesearch(typedData.target.value);
               }}
             />
 
             <button
-              className="btn btn-warning"
+              className=""
               type="button"
               onClick={() => {
                 //when i click the button filter and update the ui
@@ -78,10 +79,12 @@ const Body = () => {
         <button
           className="btn btn-primary m-3 filter-btn"
           onClick={() => {
+          
             const filterreslist = reslists.filter(
               (res) => res.info.avgRating > 4
             );
-            setListofRes(filterreslist);
+           
+            setfiltredres(filterreslist);
           }}
         >
           Top rated button
