@@ -1,16 +1,18 @@
-import RestaurantComponent, { withpromotor } from "./RestaruantComponet";
+import RestaurantComponent from "./RestaruantComponet";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlinestatus from "../utill/useOnlinestatus";
+import { addVeg } from "./addVeg";
 const Body = () => {
   const [reslists, setListofRes] = useState([]);
 
   const [filtredreslist, setfiltredres] = useState([]);
-  const RestPromotor = withpromotor();
-  // console.log(<RestPromotor />);
+  
+  const RestPromotor = addVeg(RestaurantComponent);
+
   const [searchtext, updatesearch] = useState("");
-  console.log(filtredreslist);
+
   useEffect(() => {
     fetchdata();
   }, []);
