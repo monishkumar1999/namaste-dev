@@ -31,4 +31,17 @@ const RestaurantComponent = ({ info }) => {
   );
 };
 
+export const withpromotor=()=>{
+  return (props)=>{
+    return (
+      <div>
+        <label>
+      veg
+        </label>
+
+        <RestaurantComponent {...props}/>
+      </div>
+    )
+  }
+}
 export default RestaurantComponent;

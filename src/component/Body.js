@@ -1,4 +1,4 @@
-import RestaurantComponent from "./RestaruantComponet";
+import RestaurantComponent, { withpromotor } from "./RestaruantComponet";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
@@ -7,9 +7,10 @@ const Body = () => {
   const [reslists, setListofRes] = useState([]);
 
   const [filtredreslist, setfiltredres] = useState([]);
-
+  const RestPromotor = withpromotor();
+  // console.log(<RestPromotor />);
   const [searchtext, updatesearch] = useState("");
-
+  console.log(filtredreslist);
   useEffect(() => {
     fetchdata();
   }, []);
@@ -51,20 +52,17 @@ const Body = () => {
               placeholder="Type to search..."
               value={searchtext}
               onChange={(typedData) => {
-                
                 updatesearch(typedData.target.value);
               }}
             />
 
             <button
-              className=""
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center space-x-2"
               type="button"
               onClick={() => {
-                //when i click the button filter and update the ui
-
-                const searchfiltred = reslists.filter((res) => {
-                  return res.info.name.toLowerCase().includes(searchtext);
-                });
+                const searchfiltred = reslists.filter((res) =>
+                  res.info.name.toLowerCase().includes(searchtext.toLowerCase())
+                );
                 console.log(searchfiltred);
                 searchfiltred.length > 0
                   ? setfiltredres(searchfiltred)
@@ -79,11 +77,10 @@ const Body = () => {
         <button
           className="btn btn-primary m-3 filter-btn"
           onClick={() => {
-          
             const filterreslist = reslists.filter(
               (res) => res.info.avgRating > 4
             );
-           
+
             setfiltredres(filterreslist);
           }}
         >
@@ -94,7 +91,15 @@ const Body = () => {
         <div className="row">
           {filtredreslist.map((restaurant) => (
             <Link to={"/resmenu/" + restaurant.info.id}>
-              <RestaurantComponent key={restaurant.info.id} info={restaurant} />
+              {restaurant.info.veg ? (
+                <RestPromotor key={restaurant.info.id}
+                info={restaurant}/>
+              ) : (
+                <RestaurantComponent
+                  key={restaurant.info.id}
+                  info={restaurant}
+                />
+              )}
             </Link>
           ))}
         </div>
