@@ -1,6 +1,7 @@
 import useResinfo from "../utill/useResinfo";
 import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
+import RestaruantCatogry from "./RestraruntCatogry";
 const RestaruntMenu = () => {
   // const [restinfo, setResinfo] = useState(null);
 
@@ -15,41 +16,36 @@ const RestaruntMenu = () => {
   const { name, costForTwoMessage, avgRatingString } =
     restinfo.data.cards[2].card.card.info;
 
-  const restview =
-    restinfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
-      .itemCards || {};
+  // const restview =
+  //   restinfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
+  //     .itemCards || {};
 
+  // console.log(restinfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
+
+  const itemCatogry =
+    restinfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+      (res) => {
+        return (
+          res?.card.card?.["@type"] ==
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        );
+      }
+    );
+
+  // console.log(itemCatogry)F
   return (
-    <div className="container mt-4">
-      <div className="card">
-        <div className="card-body">
-          <h1 className="card-title">{name}</h1>
-          <p className="card-text">
-            <strong>Cost for Two:</strong> {costForTwoMessage}
+    <div className="text-center">
+      <div>
+        <div>
+          <h1 className="font-bold my-6 text-2xl">{name}</h1>
+          <p>
+            <span className="font-bold">Cost for Two:</span> {costForTwoMessage}
           </p>
-          <p className="card-text">
-            <strong>Average Rating:</strong> {avgRatingString}
-          </p>
-          <p className="card-text">
-            <strong>Cuisines:</strong>
-          </p>
+          <p>Average Rating: {avgRatingString}</p>
         </div>
-        <div className="card-footer">
-          <h5 className="card-title">Menu</h5>
-          <ul className="list-group list-group-flush">
-            {restview.length > 0 ? (
-              restview.map((res) => {
-                return (
-                  <li className="list-group-item" key={res.card.info.id}>
-                    {res.card.info.name}
-                  </li>
-                );
-              })
-            ) : (
-              <li>No Data</li>
-            )}
-          </ul>
-        </div>
+        {itemCatogry.map((item) => {
+          return <RestaruantCatogry item={item.card.card} />;
+        })}
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const useResinfo = (resid) => {
       console.error("Error fetching data:", error);
     }
   };
-  console.log(restinfo);
+  // console.log(restinfo);
   return restinfo;
 };
 
