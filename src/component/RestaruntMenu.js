@@ -2,13 +2,15 @@ import useResinfo from "../utill/useResinfo";
 import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
 import RestaruantCatogry from "./RestraruntCatogry";
+import { useState } from "react";
 const RestaruntMenu = () => {
-  // const [restinfo, setResinfo] = useState(null);
+  const [expanditem, setexpanditem] = useState(null);
 
   const { resid } = useParams();
 
   const restinfo = useResinfo(resid);
 
+  const dummy="dummy";
   if (restinfo == null) {
     return <Shimmer />;
   }
@@ -43,10 +45,18 @@ const RestaruntMenu = () => {
           </p>
           <p>Average Rating: {avgRatingString}</p>
         </div>
-        {itemCatogry.map((item) => {
-          return <RestaruantCatogry item={item.card.card} />;
+        {itemCatogry.map((item, index) => {
+          return (
+            <RestaruantCatogry
+              item={item.card.card}
+              showitems={index == expanditem ? true:false}
+              setexpanditem={()=>setexpanditem(index)}
+              dummy={dummy}
+            />
+          );
         })}
       </div>
+      
     </div>
   );
 };

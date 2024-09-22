@@ -1,6 +1,10 @@
 import { CDN_URL } from "../utill/constant.js";
 import { Link } from "react-router-dom";
+import usercontext from "../utill/Context.js";
+import { useContext } from "react";
+
 const RestaurantComponent = ({ info }) => {
+  const { loggedInuser } = useContext(usercontext); 
   const { name, cloudinaryImageId, costForTwo, avgRating } = info.info;
 
   return (
@@ -26,6 +30,7 @@ const RestaurantComponent = ({ info }) => {
 
           <a href="#" className="btn btn-primary mt-auto">View Details</a>
         </div>
+        <p>{loggedInuser}</p>
       </div>
     </div>
   );

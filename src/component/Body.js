@@ -1,17 +1,21 @@
 import RestaurantComponent from "./RestaruantComponet";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlinestatus from "../utill/useOnlinestatus";
 import { addVeg } from "./addVeg";
+import usercontext from "../utill/Context";
 const Body = () => {
   const [reslists, setListofRes] = useState([]);
 
   const [filtredreslist, setfiltredres] = useState([]);
-  
+
   const RestPromotor = addVeg(RestaurantComponent);
 
   const [searchtext, updatesearch] = useState("");
+
+  const {loggedInuser} = useContext(usercontext);
+  console.log(loggedInuser);
 
   useEffect(() => {
     fetchdata();
@@ -92,10 +96,9 @@ const Body = () => {
       <div className="container">
         <div className="row">
           {filtredreslist.map((restaurant) => (
-            <Link to={"/resmenu/" + restaurant.info.id}>
+            <Link to={"/resmenu/" + restaurant.info.id} key={ restaurant.info.id}>
               {restaurant.info.veg ? (
-                <RestPromotor key={restaurant.info.id}
-                info={restaurant}/>
+                <RestPromotor key={restaurant.info.id} info={restaurant} />
               ) : (
                 <RestaurantComponent
                   key={restaurant.info.id}
