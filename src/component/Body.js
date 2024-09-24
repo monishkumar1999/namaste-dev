@@ -14,7 +14,7 @@ const Body = () => {
 
   const [searchtext, updatesearch] = useState("");
 
-  const {loggedInuser} = useContext(usercontext);
+  const { loggedInuser, setUsername } = useContext(usercontext);
   console.log(loggedInuser);
 
   useEffect(() => {
@@ -92,11 +92,25 @@ const Body = () => {
         >
           Top rated button
         </button>
+
+        <div>
+          <label>user name</label>
+          <input
+            className="border border-black"
+            value={loggedInuser}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <div className="container">
         <div className="row">
           {filtredreslist.map((restaurant) => (
-            <Link to={"/resmenu/" + restaurant.info.id} key={ restaurant.info.id}>
+            <Link
+              to={"/resmenu/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
               {restaurant.info.veg ? (
                 <RestPromotor key={restaurant.info.id} info={restaurant} />
               ) : (

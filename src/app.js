@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Header } from "./component/Header";
@@ -12,17 +12,25 @@ import usercontext from "./utill/Context";
 
 const Grocery = lazy(() => import("./component/Grocery"));
 
-const AppComponent = () => (
 
-    <div className="app">
-        <usercontext.Provider value={{ loggedInuser: "monish" }}>
-      <Header />
-      </usercontext.Provider>
-      <Outlet />
-    </div>
+const AppComponent = () =>{
+  const[username,setUsername]= useState("monish")
+
+  return(
   
+  <usercontext.Provider value={{ loggedInuser:username,setUsername}}>  
+  {/* the whole context is elon musk*/}
+    <div className="app">
+      
+        {/* the header is monish */}
+        <Header />
+    
+     
+    </div>
+    <Outlet />
+  </usercontext.Provider>
 );
-
+}
 const appRoute = createBrowserRouter([
   {
     path: "/",
