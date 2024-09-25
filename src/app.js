@@ -9,6 +9,8 @@ import Error from "./component/Error";
 import RestaruntMenu from "./component/RestaruntMenu";
 import Current from "./component/Current";
 import usercontext from "./utill/Context";
+import { Provider } from "react-redux";
+import store from "./utill/store";
 
 const Grocery = lazy(() => import("./component/Grocery"));
 
@@ -17,7 +19,7 @@ const AppComponent = () =>{
   const[username,setUsername]= useState("monish")
 
   return(
-  
+  <Provider store={store }>
   <usercontext.Provider value={{ loggedInuser:username,setUsername}}>  
   {/* the whole context is elon musk*/}
     <div className="app">
@@ -29,6 +31,7 @@ const AppComponent = () =>{
     </div>
     <Outlet />
   </usercontext.Provider>
+  </Provider>
 );
 }
 const appRoute = createBrowserRouter([

@@ -15,7 +15,7 @@ const Body = () => {
   const [searchtext, updatesearch] = useState("");
 
   const { loggedInuser, setUsername } = useContext(usercontext);
-  console.log(loggedInuser);
+  // console.log(loggedInuser);
 
   useEffect(() => {
     fetchdata();
