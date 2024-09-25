@@ -28,7 +28,7 @@ export const Header = () => {
           <li className="px-4"><Link to="/">Home</Link></li>
           <li className="px-4"><Link to="/about">About</Link></li>
           <li className="px-4"><Link to="/contact">Contact us</Link></li>
-          <li className="px-4 font-bold">card -({cartItems.length})</li>
+          <li className="px-4 font-bold ">card -({cartItems.length})</li>
           <li className="px-4"><Link to="/grocery">Grocery</Link></li>
           <li className="px-4">
             <button onClick={() => {
