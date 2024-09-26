@@ -14,7 +14,7 @@ export const Header = () => {
   //subscribe the store using useSelector
   const cartItems = useSelector((store) => store.cart.items);
 
-// console.log(cartItems)
+ console.log(cartItems)
  
   return (
     <div className="flex justify-between bg-pink-300 shadow">
