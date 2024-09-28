@@ -33,7 +33,7 @@ const ItemList = ({ items }) => {
             <div className="absolute">
               <button
                 className="bg-white p-2 rounded shadow-md "
-                onClick={()=>addItemToCart(item.card.info)}
+                onClick={()=>addItemToCart(item)}
               >
                 Add+
               </button>
